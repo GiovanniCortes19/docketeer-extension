@@ -17,27 +17,16 @@ router.get('/', cacheController.checkCacheGrypeDb, imageController.getImages, im
 });
 
 /**
- * @abstract Check if image vulnerabilities are in the cache, if not perform a Grype scan
- * @todo 
- * @param 
- * @returns
- */
-router.post('/scan', cacheController.checkCacheVulnerability, imageController.scanImages, cacheController.setCacheVulnerability,(req, res) => {
-  return res.status(200).json(res.locals.vulnerabilites);
-});
-
-/**
- * @abstract Scans an using Grype CLI and summarizes the report's vulnerabilities by severity
+ * @abstract Check if image vulnerabilities are in the cache, if not perform a Grype scan using Grype CLI and summarizes the report's vulnerabilities by severity
  * @todo 
  * @param req.body.scanName
  * @returns count of vulnerabilities in this format: {
     "Low": 19,
     "Medium": 11,
     "Negligible": 3
-}
+  }
  */
-router.post('/scan', imageController.scanImages, (req, res) => {
-  res.set({ 'content-type': 'application/json' });
+router.post('/scan', cacheController.checkCacheVulnerability, imageController.scanImages, cacheController.setCacheVulnerability, (req, res) => {
   return res.status(200).json(res.locals.vulnerabilites);
 });
 
