@@ -14,9 +14,8 @@
     "strictNullChecks": false,
     "baseUrl": "./",
     "allowSyntheticDefaultImports": true,
-    },
-    "exclude": [
-      "./__mocks__/",
-      "./__tests__"
-    ]
-} 
+    "paths": { "@docker/*": ["./node_modules/@docker"] }
+  },
+  "exclude": ["./__mocks__/", "./__tests__"],
+  "include": ["./tests/setup.ts"]
+}
