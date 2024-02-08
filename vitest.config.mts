@@ -9,22 +9,12 @@ export default defineConfig({
     globals: true,
     environment: 'jsdom',
     setupFiles: ['./tests/setup.ts'],
-    server: {
-      deps: {
-        inline: ['@docker/extension-api-client']
-      }
+    alias: {
+      '@docker/extension-api-client': 
+        new URL('./__mocks__/@docker/extension-api-client.js', import.meta.url).pathname,
     },
-    deps: {
-      moduleDirectories: ['node_modules', './node_modules'],
-    },
-    // alias: {
-    //   '@docker': path.resolve(
-    //     __dirname,
-    //     './__mocks__/@docker/extension-api-client.js'
-    //   ),
-    // },
     bail: 2,
-    include: ['./tests/components/*.test.tsx', './tests/components/*.test.ts']
+    include: ['./tests/components/*.test.tsx', './tests/components/*.test.ts'],
   },
   plugins: [react(), tsconfigPaths()] as UserConfig['plugins'],
 });
