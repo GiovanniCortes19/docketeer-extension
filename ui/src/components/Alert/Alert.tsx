@@ -86,7 +86,7 @@ const Alert = (): JSX.Element => {
   };
 
   return (
-    alertExists && (
+    <>{alertExists && (
       <div className={styles.wrapper}>
         {alertType === 'info' && (
           <div className={styles.info}>
@@ -159,7 +159,7 @@ const Alert = (): JSX.Element => {
           </div>
         )}
       </div>
-    )
+    )}</>
   );
 };
 
