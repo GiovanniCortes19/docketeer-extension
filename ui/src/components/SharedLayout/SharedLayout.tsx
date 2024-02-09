@@ -151,7 +151,7 @@ function SharedLayout(): JSX.Element {
             </li>
           </ul>
             <div className={styles.hamburgerIcon}>
-              <img src={MenuIcon} onClick={toggleSidebar}>
+              <img role='button' aria-haspopup='menu' src={MenuIcon} onClick={toggleSidebar}>
               </img>
               {isOpen && <SideBar toggleSideBar={toggleSidebar} prune={prune} isOpen={isOpen}/>}
             </div>
