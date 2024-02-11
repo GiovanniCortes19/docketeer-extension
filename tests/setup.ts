@@ -3,9 +3,16 @@ import { cleanup } from '@testing-library/react';
 import { expect, afterEach, vi } from 'vitest';
 import matchers from '@testing-library/jest-dom/matchers';
 
+import { server } from '__mocks__/server';
+
 expect.extend(matchers);
 
-// clean up after each test case
-afterEach(() => {
-  cleanup();
-});
+beforeAll(() =>
+  server.listen({
+    onUnhandledRequest: 'error',
+  })
+);
+
+afterEach(() => server.resetHandlers());
+
+afterAll(() => server.close());
